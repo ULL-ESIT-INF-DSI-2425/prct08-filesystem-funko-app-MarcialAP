@@ -51,3 +51,57 @@ yargs(hideBin(process.argv))
  
 }) .help() .argv;
  
+
+yargs(hideBin(process.argv))
+.command('mover', 'Mueve un archivo o directorio', {
+origen: {
+ description: 'Ruta del archivo o directorio que se desea mover',
+ type: 'string',
+ demandOption: true
+},
+destino: {
+    description: 'destino al que se desea mover el archivo o directorio',
+    type: 'string',
+    demandOption: true
+   }
+}, (argv) => {
+console.log(argv.origen);
+rename(argv.origen, argv.destino, (error) => {
+  if (error) {
+      console.log("No se puede encontrar el fichero o directorio que se desea mover");
+  }
+})
+
+}) .help() .argv;
+
+yargs(hideBin(process.argv))
+.command('busqueda', 'Busca los archivos con una extension especifica en un directorio y sus subdirectorios', {
+ruta: {
+ description: 'Ruta del archivo o directorio en el que se desea buscar',
+ type: 'string',
+ demandOption: true
+},
+extension: {
+    description: 'Extensión que se desea buscar',
+    type: 'string',
+    demandOption: true
+   }
+}, (argv) => {
+console.log(argv.origen);
+const extension = RegExp(argv.extension);
+readdir(argv.ruta, {'recursive': true}, (error, directorio_principal) => {
+    if (error) {
+        console.log("No se encuentra la ruta");
+    } else {
+        directorio_principal.forEach((directorio_archivo) => {
+            if (typeof(directorio_archivo) === "string") {
+                if (extension.test(directorio_archivo)) {
+                    console.log(directorio_archivo);
+                }
+            }
+        })
+        
+    }
+  })
+
+}) .help() .argv;
