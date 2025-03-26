@@ -1,4 +1,3 @@
-"use strict";
 /**
  * Suma dos numeros
  * @param firstnumber - El primer operando de la suma
@@ -9,8 +8,6 @@
  * add(8, -3) = 5
  * ```
  */
-Object.defineProperty(exports, "__esModule", { value: true });
-exports.add = add;
-function add(firstnumber, secondnumber) {
+export function add(firstnumber, secondnumber) {
     return firstnumber + secondnumber;
 }
