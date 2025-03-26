@@ -78,7 +78,6 @@ yargs(hideBin(process.argv))
         demandOption: true
     }
 }, (argv) => {
-    console.log(argv.origen);
     const extension = RegExp(argv.extension);
     readdir(argv.ruta, { 'recursive': true }, (error, directorio_principal) => {
         if (error) {
