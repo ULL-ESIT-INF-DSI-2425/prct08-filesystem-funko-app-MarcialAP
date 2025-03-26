@@ -87,7 +87,7 @@ extension: {
     demandOption: true
    }
 }, (argv) => {
-const extension = RegExp(argv.extension);
+const extension = new RegExp(argv.extension + "$");
 readdir(argv.ruta, {'recursive': true}, (error, directorio_principal) => {
     if (error) {
         console.log("No se encuentra la ruta");
